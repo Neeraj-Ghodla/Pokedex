@@ -26,8 +26,6 @@ class ShowGenerationPokemon extends StatelessWidget {
     "Kalos Region",
   ];
 
-
-
   List<String> getGeneration(region) {
     List<String> names;
     if (region == "All Pokemons") {
@@ -122,9 +120,13 @@ class ShowGenerationPokemon extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.all(10.0),
                       ),
-                      Hero(
-                          tag: name,
-                          child: Image.asset("images/100x100/$name")),
+                      Container(
+                        width: 100.0,
+                        height: 100.0,
+                        child: Hero(
+                            tag: name,
+                            child: Image.asset("images/400x400/$name")),
+                      ),
                       Padding(
                         padding: EdgeInsets.all(10.0),
                       ),

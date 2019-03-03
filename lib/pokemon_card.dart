@@ -803,9 +803,14 @@ class PokemonCard extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.all(10.0),
                       ),
-                      Hero(
+                      Container(
+                        width: 100.0,
+                        height: 100.0,
+                        child: Hero(
                           tag: name,
-                          child: Image.asset("images/100x100/$name")),
+                          child: Image.asset("images/400x400/$name"),
+                        ),
+                      ),
                       Padding(
                         padding: EdgeInsets.all(10.0),
                       ),

@@ -7,13 +7,13 @@ class PokemonPage extends StatelessWidget {
 
   PokemonPage(this.imagePath, this.pokemonName);
 
-  final List data = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemonName.substring(3, pokemonName.length - 4)),
+        title: Text(
+          pokemonName.substring(3, pokemonName.length - 4),
+        ),
       ),
       body: ListView(
         children: <Widget>[
@@ -81,51 +81,64 @@ class PokemonPage extends StatelessWidget {
       pokemonID = int.parse(name) - 1;
     }
 
-    return Column(
-      children: <Widget>[
-        Text(
-          "Type: ${pokedex[pokemonID]['type']}",
-          style: TextStyle(fontSize: 18),
-        ),
-        Padding(
-          padding: EdgeInsets.all(5.0),
-        ),
-        Text(
-          "Stats",
-          style: TextStyle(
-            fontSize: 19,
-            fontWeight: FontWeight.bold
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      ),
+      width: 300.0,
+      padding: EdgeInsets.all(10.0),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 50.0),
+        decoration: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
           ),
-          textAlign: TextAlign.center,
         ),
-        Padding(
-          padding: EdgeInsets.all(5.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              "Type: ${pokedex[pokemonID]['type']}",
+              style: TextStyle(fontSize: 18),
+            ),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+            ),
+            Text(
+              "Stats",
+              style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+            ),
+            Text(
+              "HP: ${pokedex[pokemonID]["base"]["HP"]}",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              "Attack: ${pokedex[pokemonID]["base"]["Attack"]}",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              "Defense: ${pokedex[pokemonID]["base"]["Defense"]}",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              "Sp. Attack: ${pokedex[pokemonID]["base"]["Sp. Attack"]}",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              "Sp. Defense: ${pokedex[pokemonID]["base"]["Sp. Defense"]}",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              "Speed: ${pokedex[pokemonID]["base"]["Speed"]}",
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
         ),
-        Text(
-          "HP: ${pokedex[pokemonID]["base"]["HP"]}",
-          style: TextStyle(fontSize: 18),
-        ),
-        Text(
-          "Attack: ${pokedex[pokemonID]["base"]["Attack"]}",
-          style: TextStyle(fontSize: 18),
-        ),
-        Text(
-          "Defense: ${pokedex[pokemonID]["base"]["Defense"]}",
-          style: TextStyle(fontSize: 18),
-        ),
-        Text(
-          "Sp. Attack: ${pokedex[pokemonID]["base"]["Sp. Attack"]}",
-          style: TextStyle(fontSize: 18),
-        ),
-        Text(
-          "Sp. Defense: ${pokedex[pokemonID]["base"]["Sp. Defense"]}",
-          style: TextStyle(fontSize: 18),
-        ),
-        Text(
-          "Speed: ${pokedex[pokemonID]["base"]["Speed"]}",
-          style: TextStyle(fontSize: 18),
-        ),
-      ],
+      ),
     );
   }
 }
