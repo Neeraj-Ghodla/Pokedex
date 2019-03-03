@@ -108,7 +108,7 @@ class ShowGenerationPokemon extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => PokemonPage(
-                            "images/400x400/$name",
+                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
                             name,
                           ),
                     ),
@@ -124,8 +124,11 @@ class ShowGenerationPokemon extends StatelessWidget {
                         width: 100.0,
                         height: 100.0,
                         child: Hero(
-                            tag: name,
-                            child: Image.asset("images/400x400/$name")),
+                          tag: name,
+                          child: Image.network(
+                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.all(10.0),

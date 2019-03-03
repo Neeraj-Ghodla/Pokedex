@@ -28,7 +28,7 @@ class PokemonPage extends StatelessWidget {
                   height: 250,
                   child: Hero(
                     tag: pokemonName,
-                    child: Image.asset(
+                    child: Image.network(
                       imagePath,
                       fit: BoxFit.cover,
                     ),

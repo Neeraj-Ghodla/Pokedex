@@ -791,7 +791,7 @@ class PokemonCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => PokemonPage(
-                            "images/400x400/$name",
+                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
                             name,
                           ),
                     ),
@@ -808,7 +808,9 @@ class PokemonCard extends StatelessWidget {
                         height: 100.0,
                         child: Hero(
                           tag: name,
-                          child: Image.asset("images/400x400/$name"),
+                          child: Image.network(
+                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
+                          ),
                         ),
                       ),
                       Padding(
@@ -826,3 +828,5 @@ class PokemonCard extends StatelessWidget {
         .toList();
   }
 }
+
+class CachedNetworkImage {}
