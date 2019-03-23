@@ -740,7 +740,18 @@ class PokemonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pokedex"),
+        title: Text("All Pokemons"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: PokemonSearch(names),
+              );
+            },
+          )
+        ],
       ),
       drawer: Drawer(
         child: Column(
@@ -829,4 +840,70 @@ class PokemonCard extends StatelessWidget {
   }
 }
 
-class CachedNetworkImage {}
+class PokemonSearch extends SearchDelegate<String> {
+  final List<String> names;
+
+  final List<String> recentPokemons = ["Charizard", "Bulbasaur", "Infernape"];
+
+  PokemonSearch(this.names);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () => query = "",
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () => close(context, query),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> pokemonNames = [];
+
+    for (int i = 0; i < names.length; i++) {
+      pokemonNames.add(names[i].substring(3, names[i].length - 4));
+    }
+
+    final suggestedPokemon = query.isEmpty
+        ? recentPokemons
+        : pokemonNames
+            .where((pokemon) =>
+                pokemon.toLowerCase().startsWith(query.toLowerCase()))
+            .toList();
+
+    return ListView.builder(
+      itemCount: suggestedPokemon.length,
+      itemBuilder: (context, index) => ListTile(
+            leading: Icon(Icons.person),
+            title: Text(suggestedPokemon[index]),
+            onTap: () {
+              query = suggestedPokemon[index];
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PokemonPage(
+                        "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/" +
+                            names[pokemonNames.indexOf(query)],
+                        names[pokemonNames.indexOf(query)],
+                      ),
+                ),
+              );
+            },
+          ),
+    );
+  }
+}
