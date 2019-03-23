@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/generation_pokemon.dart';
 import 'package:pokedex/pokemon_detail.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
+
 class PokemonCard extends StatelessWidget {
   final List<String> names = [
     '001Bulbasaur.png',
@@ -758,7 +761,7 @@ class PokemonCard extends StatelessWidget {
           children: <Widget>[
             AppBar(
               automaticallyImplyLeading: false,
-              title: Text("Categories"),
+              title: Text("Regions"),
             ),
             Column(
               children: regions
@@ -819,8 +822,9 @@ class PokemonCard extends StatelessWidget {
                         height: 100.0,
                         child: Hero(
                           tag: name,
-                          child: Image.network(
-                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
+                          child: CachedNetworkImage(
+                            imageUrl: "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
+                            placeholder: (context, url) => Image.asset('assets/pokeball50.jpg'),
                           ),
                         ),
                       ),

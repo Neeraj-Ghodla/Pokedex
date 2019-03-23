@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokemon_detail.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 class ShowGenerationPokemon extends StatelessWidget {
   final String region;
   final List<String> imagePaths;
@@ -136,8 +138,9 @@ class ShowGenerationPokemon extends StatelessWidget {
                         height: 100.0,
                         child: Hero(
                           tag: name,
-                          child: Image.network(
-                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
+                          child: CachedNetworkImage(
+                            imageUrl: "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$name",
+                            placeholder: (context, url) => Image.asset('assets/pokeball50.jpg'),
                           ),
                         ),
                       ),

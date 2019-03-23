@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 class PokemonPage extends StatelessWidget {
   final String imagePath;
   final String pokemonName;
@@ -28,10 +30,10 @@ class PokemonPage extends StatelessWidget {
                   height: 250,
                   child: Hero(
                     tag: pokemonName,
-                    child: Image.network(
-                      imagePath,
-                      fit: BoxFit.cover,
-                    ),
+                    child: CachedNetworkImage(
+                            imageUrl: imagePath,
+                            placeholder: (context, url) => Image.asset('assets/pokeball50.jpg'),
+                          ),
                   ),
                 ),
                 Padding(
